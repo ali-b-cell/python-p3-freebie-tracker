@@ -1,1 +1,126 @@
-Generic single-database configuration.
+A SQLAlchemy-based application that models companies giving out freebies to developers. This project demonstrates relational modeling, CRUD operations, database seeding, migrations, and querying with SQLAlchemy.
+
+## Project Structure
+
+freebie-tracker/
+│
+├── lib/
+│ ├── alembic/ # Alembic configuration
+│ ├── migrations/ # Alembic migration scripts
+│ ├── alembic.ini # Alembic settings file
+│ ├── models.py # SQLAlchemy models: Company, Dev, Freebie
+│ ├── seed.py # Script to populate database with sample data
+│ ├── debug.py # Interactive debug script using ipdb
+│ ├── query_data.py # Custom queries and data fetch logic
+│ ├── database.py # Database setup and session configuration
+│ ├── freebies.db # SQLite database (main data store)
+
+
+## Models Overview
+
+### Company
+
+- Columns: `id`, `name`, `founding_year`
+- Relationships: has many `freebies`
+
+### Dev
+
+- Columns: `id`, `name`
+- Relationships: has many `freebies`
+
+### Freebie
+
+- Columns: `id`, `item_name`, `value`, `company_id`, `dev_id`
+- Relationships: belongs to `company`, belongs to `dev`
+
+## Setup Instructions
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/your-username/freebie-tracker.git
+cd freebie-tracker/lib
+(Optional) Create a virtual environment
+
+bash
+Always show details
+
+Copy code
+python3 -m venv venv
+source venv/bin/activate
+Install dependencies
+
+bash
+Always show details
+
+Copy code
+pip install -r ../requirements.txt
+Run database migrations
+
+bash
+Always show details
+
+Copy code
+alembic upgrade head
+Seed the database with sample data
+
+bash
+Always show details
+
+Copy code
+python seed.py
+Run debug console
+
+bash
+Always show details
+
+Copy code
+python debug.py
+Features
+SQLAlchemy ORM relationships
+
+Alembic migrations
+
+Data seeding with clear logs
+
+Custom querying in query_data.py
+
+Centralized session handling in database.py
+
+Debugging with ipdb
+
+Sample Output
+Running seed.py will clear the database and insert:
+
+Companies: Devs Square, Legicomp, tarakideal
+
+Developers: crocs, Susan, Santos
+
+Freebies: Cap, Pen, Mug, Water Bottle
+
+Example debug output:
+
+python
+Always show details
+
+Copy code
+[<Company(id=1, name='Devs Square')]>, <Company(id=2, name='Legicom')
+
+Recommended Sources and References:
+SQLAlchemy Documentation
+Official docs for SQLAlchemy ORM and Core usage
+https://docs.sqlalchemy.org/
+
+Alembic Documentation
+For database migrations in SQLAlchemy projects
+https://alembic.sqlalchemy.org/en/latest/
+
+Python Official Documentation
+General Python usage and libraries
+https://docs.python.org/3/
+
+Real Python Tutorials
+Great tutorials for Python and SQLAlchemy integration
+
+Author
+Crafted with clarity and care by Alice Nthenge
